@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { BasicOption } from './components/BasicAssesmentOption';
@@ -27,21 +26,6 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Andrew Altmann, Kyle Henry, Benjamin Huffman, Oryem Kilama
-        </a>
-      </header>
-      <hr></hr>
       <BasicOption></BasicOption>
       <hr></hr>
       <Form>

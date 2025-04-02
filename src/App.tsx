@@ -26,6 +26,7 @@ function App() {
   }
   return (
     <div className="App">
+      <div className="footer">
       <BasicOption></BasicOption>
       <hr></hr>
       <Form>
@@ -34,6 +35,8 @@ function App() {
         <br></br>
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
+      <p> Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
+    </div>
     </div>
   );
 }

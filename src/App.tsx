@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+import { NavigationBar } from "./components/NavigationBar";
 import { BasicOption } from './components/BasicAssesmentOption';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -26,22 +27,28 @@ function App() {
   }
   return (
     <div className="App">
-      <div className="content">
+      <NavigationBar /> {}
+
+      <div className="main-content">
         <BasicOption />
       </div>
-      <div className="footer">
-        <div className="api-container">
-          <Form>
-            <Form.Label>API Key:</Form.Label>
-            <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} />
-            <br />
-            <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-          </Form>
-          <p>Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
-        </div>
-      </div>
+
+      <footer className="footer">
+        <hr />
+        <Form className="api-form">
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Insert API Key Here"
+            onChange={changeKey}
+          />
+          <Button className="submit-button" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Form>
+        <p>Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
+      </footer>
     </div>
   );
 }
-
 export default App;

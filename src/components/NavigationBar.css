@@ -1,0 +1,23 @@
+.navbar-custom {
+    background-color: rgb(35, 68, 101);
+    padding: 15px 20px; /* More padding for better spacing */
+  }
+  
+  /* Space out brand */
+  .nav-brand {
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 10px; /* Add spacing to push away from the edge */
+  }
+  
+  .nav-links .nav-link {
+    color: white !important;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px; /* More padding between links */
+  }
+  
+  .nav-links .nav-link:hover {
+    color: #d1e3ff !important;
+  }
+  

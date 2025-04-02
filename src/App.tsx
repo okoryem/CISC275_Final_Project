@@ -14,7 +14,12 @@ if (prevKey !== null) {
 
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
-  
+
+  const [isBlurred, setIsBlurred] = useState(true); //Used to turn the blur on/off
+  const handleReveal = () => {
+    setIsBlurred(false);
+  };
+
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
@@ -25,13 +30,24 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+  
+  
+
   return (
     <div className="App">
       <NavigationBar /> {}
 
       <div className="main-content">
-        <BasicOption />
+        
       </div>
+            {/* Blurred Background */}
+            <div className={`overlay ${isBlurred ? "blur-active" : "blur-hidden"}`} />
+
+            {/* Pop-up Box */}
+            {isBlurred && (
+                <BasicOption handleReveal={handleReveal} isBlurred={isBlurred}/>
+            )}
+
 
       <footer className="footer">
         <hr />

@@ -26,17 +26,20 @@ function App() {
   }
   return (
     <div className="App">
+      <div className="content">
+        <BasicOption />
+      </div>
       <div className="footer">
-      <BasicOption></BasicOption>
-      <hr></hr>
-      <Form>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
-      </Form>
-      <p> Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
-    </div>
+        <div className="api-container">
+          <Form>
+            <Form.Label>API Key:</Form.Label>
+            <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey} />
+            <br />
+            <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+          </Form>
+          <p>Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
+        </div>
+      </div>
     </div>
   );
 }

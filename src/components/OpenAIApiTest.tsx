@@ -13,10 +13,9 @@ const SUBJECTS = [
 ];
 
 
-
-export function OpenAIApiTest(): React.JSX.Element {
+export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element {
   const openai = new OpenAI({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true
+    apiKey: apiKey, dangerouslyAllowBrowser: true
   });
 
   const [subject, setSubject] = React.useState<string>(SUBJECTS[0]);
@@ -24,6 +23,11 @@ export function OpenAIApiTest(): React.JSX.Element {
   //const [apiKey, setApiKey] = React.useState<string>(key);
 
   async function displayResponse() {
+    if (!apiKey) {
+      setResponse("Please enter your OpenAI API key at the bottom of the page.");
+      return;
+    }
+        
     const aiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [

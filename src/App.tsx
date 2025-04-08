@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { NavigationBar } from "./components/NavigationBar";
-import { BasicOption } from './components/BasicAssesmentOption';
+// was advised by chatgpt to install router to connect to othere pages
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import {Home} from './components/Home'
+import { DetailedQuiz } from './components/DetailedQuiz'; 
+import { BasicQuiz } from './components/BasicQuiz';      
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -32,39 +40,37 @@ function App() {
   }
   
   
-
+  //ai (specifically ChatGpt) helped with the understanding of using the router
   return (
-    <div className="App">
-      <NavigationBar /> {}
+    <Router>
+      <div className="App">
+        <NavigationBar />
 
-      <div className="main-content">
-        
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Home handleReveal={handleReveal} isBlurred={isBlurred} />} />
+            <Route path="/basic" element={<BasicQuiz />} />
+            <Route path="/detailed" element={<DetailedQuiz />} />
+          </Routes>
+        </div>
+
+        <footer className="footer">
+          <hr />
+          <Form className="api-form">
+            <Form.Label>API Key:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Insert API Key Here"
+              onChange={changeKey}
+            />
+            <Button className="submit-button" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Form>
+          <p>Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
+        </footer>
       </div>
-            {/* Blurred Background */}
-            <div className={`overlay ${isBlurred ? "blur-active" : "blur-hidden"}`} />
-
-            {/* Pop-up Box */}
-            {isBlurred && (
-                <BasicOption handleReveal={handleReveal} isBlurred={isBlurred}/>
-            )}
-
-
-      <footer className="footer">
-        <hr />
-        <Form className="api-form">
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insert API Key Here"
-            onChange={changeKey}
-          />
-          <Button className="submit-button" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Form>
-        <p>Andrew Altmann, Ben Huffman, Oryem Kilama, Kyle Henry</p>
-      </footer>
-    </div>
+    </Router>
   );
 }
 export default App;

@@ -12,7 +12,7 @@ const SUBJECTS = [
   "Music"
 ];
 
-const DETAILED_QUESTIONS = {
+const DeatiledQuestions = {
   "What type of work environment do you prefer?": "",
   "How do you feel about problem-solving at work?": "",
   "How do you prefer to communicate at work?": "",
@@ -35,7 +35,7 @@ const DETAILED_QUESTIONS = {
   "Which of these industries interests you the most?": ""
 }
 
-const BASIC_QUESTIONS = {
+const BasicQuestions = {
   "What do you like doing the most?": "",
   "What kind of work environment do you prefer?": "",
   "Do you enjoy working with people?": "",
@@ -64,11 +64,30 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
       return;
     }
         
+    /*
     const aiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: 'system', content: "You are a career specialist. You analyze people's responses and help them choose a career. Limit your responses to 3 sentences." },
         { role: 'user', content: `My favorite subject in school is ${subject}. What career should I consider?` }
+      ]
+    });
+    const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
+    setResponse(aiResponseText);
+    */
+
+    const BasicQuestionsArray = Object.entries(BasicQuestions);
+
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: 'system', 
+          content: `You are a career specialist. You analyze people's responses
+           to an online career quiz and help them choose a career. Given a 
+           detailed analysis of their responses. The analysis should consist of 
+           a list of possible careers. At least 5 careers should be listed.` },
+
+        { role: 'user', content: `The questions and their answers are: ${BasicQuestionsArray.map((question): string => question.join(": "))}` }
       ]
     });
     const aiResponseText: string = aiResponse.choices[0].message.content || "No response";

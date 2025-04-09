@@ -11,8 +11,8 @@ const SUBJECTS = [
   "Physical Education",
   "Music"
 ];
-
-/* const DETAILED_QUESTIONS = {
+/*
+const DETAILED_QUESTIONS = {
   "What type of work environment do you prefer?": "",
   "How do you feel about problem-solving at work?": "",
   "How do you prefer to communicate at work?": "",
@@ -48,7 +48,6 @@ const BASIC_QUESTIONS = {
   "What kind of impact do you want to have in your career?": ""
 }
 */
-
 export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element {
   const openai = new OpenAI({
     apiKey: apiKey, dangerouslyAllowBrowser: true

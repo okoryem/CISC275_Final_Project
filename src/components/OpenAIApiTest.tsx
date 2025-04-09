@@ -12,6 +12,7 @@ const SUBJECTS = [
   "Music"
 ];
 
+/*
 const DeatiledQuestions = {
   "What type of work environment do you prefer?": "",
   "How do you feel about problem-solving at work?": "",
@@ -47,6 +48,7 @@ const BasicQuestions = {
   "How do you approach learning new skills or concepts?": "",
   "What kind of impact do you want to have in your career?": ""
 }
+  */
 
 
 export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element {
@@ -64,7 +66,7 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
       return;
     }
         
-    /*
+    
     const aiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -74,8 +76,9 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
     });
     const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
     setResponse(aiResponseText);
-    */
+    
 
+    /*
     const BasicQuestionsArray = Object.entries(BasicQuestions);
 
     const aiResponse = await openai.chat.completions.create({
@@ -92,6 +95,23 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
     });
     const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
     setResponse(aiResponseText);
+    
+    const DetailedQuestionsArray = Object.entries(DeatiledQuestions);
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: 'system', 
+          content: `You are a career specialist. You analyze people's responses
+           to an online career quiz and help them choose a career. Given a 
+           detailed analysis of their responses. The analysis should consist of 
+           a list of possible careers. At least 5 careers should be listed.` },
+
+        { role: 'user', content: `The questions and their answers are: ${DetailedQuestionsArray.map((question): string => question.join(": "))}` }
+      ]
+    });
+    const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
+    setResponse(aiResponseText);
+    */
   }
 
   function updateSubject(event: React.ChangeEvent<HTMLInputElement>) {

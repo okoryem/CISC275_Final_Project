@@ -35,7 +35,7 @@ const DETAILED_QUESTIONS = {
   "Which of these industries interests you the most?": ""
 }
 
-const BASIC_QUESTIONS = {
+const BasicQuestions = {
   "What do you like doing the most?": "",
   "What kind of work environment do you prefer?": "",
   "Do you enjoy working with people?": "",
@@ -63,6 +63,7 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
       return;
     }
         
+    
     const aiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -72,6 +73,42 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
     });
     const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
     setResponse(aiResponseText);
+    
+
+    /*
+    const BasicQuestionsArray = Object.entries(BasicQuestions);
+
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: 'system', 
+          content: `You are a career specialist. You analyze people's responses
+           to an online career quiz and help them choose a career. Given a 
+           detailed analysis of their responses. The analysis should consist of 
+           a list of possible careers. At least 5 careers should be listed.` },
+
+        { role: 'user', content: `The questions and their answers are: ${BasicQuestionsArray.map((question): string => question.join(": "))}` }
+      ]
+    });
+    const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
+    setResponse(aiResponseText);
+    
+    const DetailedQuestionsArray = Object.entries(DeatiledQuestions);
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: 'system', 
+          content: `You are a career specialist. You analyze people's responses
+           to an online career quiz and help them choose a career. Given a 
+           detailed analysis of their responses. The analysis should consist of 
+           a list of possible careers. At least 5 careers should be listed.` },
+
+        { role: 'user', content: `The questions and their answers are: ${DetailedQuestionsArray.map((question): string => question.join(": "))}` }
+      ]
+    });
+    const aiResponseText: string = aiResponse.choices[0].message.content || "No response";
+    setResponse(aiResponseText);
+    */
   }
 
   function updateSubject(event: React.ChangeEvent<HTMLInputElement>) {

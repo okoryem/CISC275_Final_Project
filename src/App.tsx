@@ -4,10 +4,10 @@ import { Button, Form } from 'react-bootstrap';
 import { NavigationBar } from "./components/NavigationBar";
 // was advised by chatgpt to install router to connect to othere pages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Home} from './components/Home'
-import { DetailedQuiz } from './components/DetailedQuiz'; 
-import { BasicQuiz } from './components/BasicQuiz';      
-import { OpenAIApiTest } from './components/OpenAIApiTest';
+import {Home} from './pages/Home'
+import { DetailedQuiz } from './pages/DetailedQuiz'; 
+import { BasicQuiz } from './pages/BasicQuiz';      
+import { OpenAIApiTest } from './pages/OpenAIApiTest';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";

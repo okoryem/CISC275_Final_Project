@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BasicOption } from './BasicAssesmentOption';
+import { BasicOption } from '../components/BasicAssesmentOption';
 
 export function Home({ handleReveal, isBlurred }: { handleReveal: () => void; isBlurred: boolean }) {
   const navigate = useNavigate();

@@ -12,6 +12,42 @@ const SUBJECTS = [
   "Music"
 ];
 
+/* const DETAILED_QUESTIONS = {
+  "What type of work environment do you prefer?": "",
+  "How do you feel about problem-solving at work?": "",
+  "How do you prefer to communicate at work?": "",
+  "Which of these best describes your ideal level of job responsibility?": "",
+  "How important is job security to you?": "",
+  "How do you feel about working under pressure?": "",
+  "Which of the following interests you the most?": "",
+  "If you could choose your ideal work schedule, which would you prefer?": "",
+  "How do you feel about working in a team versus working alone?": "",
+  "When it comes to career growth, which statement fits you best?": "",
+  "I enjoy tasks that require attention to detail.": "",
+  "I feel more satisfied when my work directly impacts other people's lives.": "",
+  "I prefer working in a field that allows me to use my creativity.": "",
+  "I am open to working with new technologies and learning new software.": "",
+  "True or False: I prefer jobs that involve repetitive tasks.": "",
+  "I prefer jobs that involve a lot of interaction with people.": "",
+  "On a scale from 1 to 5, how comfortable are you with managing others in a professional setting?": "",
+  "How much does work-life balance matter to you?": "",
+  "When it comes to work, I value:": "",
+  "Which of these industries interests you the most?": ""
+}
+
+const BASIC_QUESTIONS = {
+  "What do you like doing the most?": "",
+  "What kind of work environment do you prefer?": "",
+  "Do you enjoy working with people?": "",
+  "How do you feel about taking on leadership roles?": "",
+  "How important is it for you to have job security?": "",
+  "What’s your preferred working style?": "",
+  "What type of work do you enjoy the most?": "",
+  "How do you feel about routine tasks?": "",
+  "How do you approach learning new skills or concepts?": "",
+  "What kind of impact do you want to have in your career?": ""
+}
+*/
 
 export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element {
   const openai = new OpenAI({

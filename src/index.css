@@ -32,7 +32,21 @@ code {
 }
 
 
+.progress-container {
+  width: 300px;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 9999px; /* pill shape */
+  overflow: hidden;
+}
 
+.progress-bar {
+  height: 100%;
+  background-color: green;
+  width: 0%; /* initial width */
+  border-radius: 9999px 0 0 9999px; /* round only the left side initially */
+  transition: width 0.3s ease;
+}
 
 
 

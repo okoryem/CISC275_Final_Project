@@ -16,7 +16,7 @@ export function NavigationBar() {
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <Nav.Link as={NavLink} to="/basic">Basic Quiz</Nav.Link>
             <Nav.Link as={NavLink} to="/detailed">Detailed Quiz</Nav.Link>
-            <Nav.Link as={NavLink} to="/login">Login/Sign up</Nav.Link>
+            <Nav.Link as={NavLink} to="/login">Results</Nav.Link>
             <Nav.Link as={NavLink} to="/apiTest">OpenAI API Test</Nav.Link>
           </Nav>
         </Navbar.Collapse>

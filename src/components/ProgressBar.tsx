@@ -1,6 +1,6 @@
 
 
-import { Container, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 export function ProgressBar() {
 
@@ -23,7 +23,7 @@ export function ProgressBar() {
       <div className="progress-bar" id="progress"></div>
     </div>
 <Form.Group controlId="attemptsInput">
-                <Form.Label>TEST Percentage (%):</Form.Label>
+    <Form.Label>TEST Percentage (%):</Form.Label>
                 <Form.Control
                     type="number"
                     value={requesting}

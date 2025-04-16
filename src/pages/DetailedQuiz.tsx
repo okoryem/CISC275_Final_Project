@@ -1,7 +1,7 @@
 export function DetailedQuiz() {
   const questions = [
     {
-      question: "What type of work environment do you prefer?",
+      question: "What type of work environment do you typically prefer?",
       options: [
         "A fast-paced, dynamic environment with a lot of change and unpredictability",
         "A structured, stable environment with clear roles and tasks",

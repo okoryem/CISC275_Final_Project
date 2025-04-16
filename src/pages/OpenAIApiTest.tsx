@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, FormCheck, FormGroup, FormLabel } from "react-bootstrap";
 import OpenAI from "openai";
+import { ProgressBar } from "../components/ProgressBar";
 
 const SUBJECTS = [
   "Math",
@@ -119,6 +120,8 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
 
   return (
     <div>
+
+  <ProgressBar></ProgressBar>
       <h4>What's your favorite subject in school</h4>
       <FormGroup controlId="subjectSelect">
         <FormLabel>Choose a subject:</FormLabel>

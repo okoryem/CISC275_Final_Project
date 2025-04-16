@@ -1,8 +1,5 @@
 export function BasicQuiz() {
-<<<<<<< HEAD
-=======
-  
->>>>>>> 561bf198c1926f8343c7e40205da6ca07a265fae
+
   const questions = [
     {
       question: "What do you like doing the most?",
@@ -104,17 +101,16 @@ export function BasicQuiz() {
           <p><strong>{index + 1}. {q.question}</strong></p>
           {q.options.map((option, i) => (
             <button key={i} style={{ marginRight: "10px", marginTop: "5px" }}>
-              {String.fromCharCode(97 + i)}) {option}
+              {String.fromCharCode(97 + i)} {option}
+
             </button>
           ))}
         </div>
       ))}
     </div>
   );
-<<<<<<< HEAD
 }
-=======
+
 
   return <h2>Welcome to the Basic Quiz</h2>;
 }
->>>>>>> 561bf198c1926f8343c7e40205da6ca07a265fae

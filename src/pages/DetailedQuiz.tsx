@@ -1,15 +1,7 @@
 export function DetailedQuiz() {
-<<<<<<< HEAD
-  const questions = [
-    {
-      question: "What type of work environment do you typically prefer?",
-=======
-  
-
   const questions = [
     {
       question: "What type of work environment do you prefer?",
->>>>>>> 561bf198c1926f8343c7e40205da6ca07a265fae
       options: [
         "A fast-paced, dynamic environment with a lot of change and unpredictability",
         "A structured, stable environment with clear roles and tasks",
@@ -207,10 +199,7 @@ export function DetailedQuiz() {
       ))}
     </div>
   );
-<<<<<<< HEAD
 }
-=======
 
   return <h2>Welcome to the Detailed Quiz</h2>;
 }
->>>>>>> 561bf198c1926f8343c7e40205da6ca07a265fae

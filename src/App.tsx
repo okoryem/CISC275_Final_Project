@@ -3,7 +3,7 @@ import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import { NavigationBar } from "./components/NavigationBar";
 // was advised by chatgpt to install router to connect to othere pages
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import {Home} from './pages/Home'
 import { DetailedQuiz } from './pages/DetailedQuiz'; 
 import { BasicQuiz } from './pages/BasicQuiz';      

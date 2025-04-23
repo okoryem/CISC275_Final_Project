@@ -98,11 +98,19 @@ export function BasicQuiz() {
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
     Array(questions.length).fill(null)
   );
+  const [results, setResults] = useState<{ question: string; selectedOption: string }[]>([]);
 
   const handleSelect = (qIndex: number, oIndex: number) => {
     const updated = [...selectedAnswers];
     updated[qIndex] = oIndex;
     setSelectedAnswers(updated);
+  };
+
+  const getAnswerTexts = () => {
+    return questions.map((q, i) => ({
+      question: q.question,
+      selectedOption: selectedAnswers[i] !== null ? q.options[selectedAnswers[i] as number] : "Not answered"
+    }));
   };
 
   return (
@@ -122,6 +130,31 @@ export function BasicQuiz() {
           ))}
         </div>
       ))}
+
+      <button
+        className="submit-button"
+        onClick={() => {
+          const answerTexts = getAnswerTexts();
+          console.log("Collected Answers:", answerTexts); // Debug logging
+          setResults(answerTexts);
+        }}
+      >
+        Generate Career Report
+      </button>
+
+      {results.length > 0 && (
+        <div className="results">
+          <h3>Your Answers:</h3>
+          <ul>
+            {results.map((item, i) => (
+              <li key={i}>
+                <strong>{item.question}</strong><br />
+                Answer: {item.selectedOption}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

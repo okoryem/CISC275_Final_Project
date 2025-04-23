@@ -1,5 +1,7 @@
-export function BasicQuiz() {
+import React, { useState } from "react";
+import "./BasicQuiz.css";
 
+export function BasicQuiz() {
   const questions = [
     {
       question: "What do you like doing the most?",
@@ -93,16 +95,29 @@ export function BasicQuiz() {
     }
   ];
 
+  const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
+    Array(questions.length).fill(null)
+  );
+
+  const handleSelect = (qIndex: number, oIndex: number) => {
+    const updated = [...selectedAnswers];
+    updated[qIndex] = oIndex;
+    setSelectedAnswers(updated);
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="quiz-container">
       <h2>Welcome to the Basic Career Quiz</h2>
       {questions.map((q, index) => (
-        <div key={index} style={{ marginBottom: "25px" }}>
+        <div key={index} className="question-block">
           <p><strong>{index + 1}. {q.question}</strong></p>
           {q.options.map((option, i) => (
-            <button key={i} style={{ marginRight: "10px", marginTop: "5px" }}>
+            <button
+              key={i}
+              className={`option-button ${selectedAnswers[index] === i ? "selected" : ""}`}
+              onClick={() => handleSelect(index, i)}
+            >
               {String.fromCharCode(97 + i)} {option}
-
             </button>
           ))}
         </div>
@@ -110,4 +125,3 @@ export function BasicQuiz() {
     </div>
   );
 }
-

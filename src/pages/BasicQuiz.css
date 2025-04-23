@@ -1,0 +1,30 @@
+.quiz-container {
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  .question-block {
+    margin-bottom: 25px;
+  }
+  
+  .option-button {
+    margin-right: 10px;
+    margin-top: 5px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .option-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .option-button.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  

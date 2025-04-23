@@ -1,3 +1,6 @@
+import React, { useState } from "react";
+import "./DetailedQuiz.css";
+
 export function DetailedQuiz() {
   const questions = [
     {
@@ -184,19 +187,35 @@ export function DetailedQuiz() {
     }
   ];
 
+  const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+
+  const handleOptionClick = (questionIndex: number, optionIndex: number) => {
+    const updatedAnswers = [...answers];
+    updatedAnswers[questionIndex] = optionIndex;
+    setAnswers(updatedAnswers);
+  };
+
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="quiz-container">
       <h2>Welcome to the Detailed Career Quiz</h2>
-      {questions.map((q, index) => (
-        <div key={index} style={{ marginBottom: "25px" }}>
-          <p><strong>{index + 1}. {q.question}</strong></p>
-          {q.options.map((option, i) => (
-            <button key={i} style={{ marginRight: "10px", marginTop: "5px" }}>
-              {String.fromCharCode(97 + i)} {option}
-            </button>
-          ))}
+      {questions.map((q, questionIndex) => (
+        <div key={questionIndex} className="question-block">
+          <p><strong>{questionIndex + 1}. {q.question}</strong></p>
+          {q.options.map((option, optionIndex) => {
+            const isSelected = answers[questionIndex] === optionIndex;
+            return (
+              <button
+                key={optionIndex}
+                onClick={() => handleOptionClick(questionIndex, optionIndex)}
+                className={`option-button ${isSelected ? "selected" : ""}`}
+              >
+                {String.fromCharCode(97 + optionIndex)} {option}
+              </button>
+            );
+          })}
         </div>
       ))}
     </div>
   );
 }
+

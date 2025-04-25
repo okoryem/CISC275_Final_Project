@@ -7,7 +7,8 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import {Home} from './pages/Home'
 import { DetailedQuiz } from './pages/DetailedQuiz'; 
 import { BasicQuiz } from './pages/BasicQuiz';      
-import { OpenAIApiTest } from './pages/OpenAIApiTest';
+import { Results } from './pages/Results';
+// import { OpenAIApiTest } from './pages/OpenAIApiTest';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -19,6 +20,8 @@ if (prevKey !== null) {
 
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
+
+  const [response, setResponse] = useState<string>("OpenAI API Response will appear here"); //for the response from the api
 
   const [isBlurred, setIsBlurred] = useState(true); //Used to turn the blur on/off
   const handleReveal = () => {
@@ -47,8 +50,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home handleReveal={handleReveal} isBlurred={isBlurred} />} />
             <Route path="/basic" element={<BasicQuiz />} />
-            <Route path="/detailed" element={<DetailedQuiz />} />
-            <Route path="/apiTest" element={<OpenAIApiTest apiKey={key} />} />
+            <Route path="/detailed" element={<DetailedQuiz apiKey={key} setResponse={setResponse}/>} />
+            <Route path="/results" element={<Results response={response}/>} />
+            {/* <Route path="/apiTest" element={<OpenAIApiTest apiKey={key} />} /> */}
           </Routes>
         </div>
 

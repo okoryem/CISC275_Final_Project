@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./DetailedQuiz.css";
 import OpenAI from "openai";
-import { Results } from "./Results";
 
 const questions = [
   {

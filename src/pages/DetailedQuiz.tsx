@@ -233,7 +233,7 @@ export function DetailedQuiz({
         },
         {
           role: "user",
-          content: `I just took a career quiz. These are the questions and their respective answers: ${finalAnswers.map(
+          content: `I just took a Detailed career quiz (meniton in your reponse that these are the results from a detailed career quiz). These are the questions and their respective answers: ${finalAnswers.map(
             (a) =>
               "The question was " +
               a.question +

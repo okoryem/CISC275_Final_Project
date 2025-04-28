@@ -48,7 +48,7 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home handleReveal={handleReveal} isBlurred={isBlurred} />} />
-            <Route path="/basic" element={<BasicQuiz />} />
+            <Route path="/basic" element={<BasicQuiz apiKey={key} setResponse={setResponse}/>} />
             <Route path="/detailed" element={<DetailedQuiz apiKey={key} setResponse={setResponse}/>} />
             <Route path="/results" element={<Results response={response}/>} />
             {/* <Route path="/apiTest" element={<OpenAIApiTest apiKey={key} />} /> */}

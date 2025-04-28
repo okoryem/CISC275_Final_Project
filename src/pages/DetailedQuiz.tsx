@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./DetailedQuiz.css";
 import OpenAI from "openai";
 
@@ -181,16 +182,17 @@ const questions = [
     ],
   },
 ];
-
-export function DetailedQuiz({ apiKey, setResponse }: { apiKey: string; setResponse: React.Dispatch<React.SetStateAction<string>>; }) {
-  
+export function DetailedQuiz({
+  apiKey,
+  setResponse,
+}: {
+  apiKey: string;
+  setResponse: React.Dispatch<React.SetStateAction<string>>;
+}) {
+  const navigate = useNavigate();
   const [answers, setAnswers] = useState<number[]>(
     Array(questions.length).fill(null)
   );
-
-  const [results, setResults] = useState<
-    { question: string; selectedOption: string }[]
-  >([]);
 
   const handleOptionClick = (questionIndex: number, optionIndex: number) => {
     const updatedAnswers = [...answers];
@@ -206,17 +208,10 @@ export function DetailedQuiz({ apiKey, setResponse }: { apiKey: string; setRespo
     }));
   };
 
-  //
-  // OpenAI API Code
-  //
-  
-
   const openai = new OpenAI({
     apiKey: apiKey,
     dangerouslyAllowBrowser: true,
   });
-
-
 
   async function displayResponse() {
     if (!apiKey) {
@@ -238,73 +233,58 @@ export function DetailedQuiz({ apiKey, setResponse }: { apiKey: string; setRespo
         },
         {
           role: "user",
-          content: `I just took a carrer quiz. These are the questions there respective answers: ${finalAnswers.map(
+          content: `I just took a career quiz. These are the questions and their respective answers: ${finalAnswers.map(
             (a) =>
               "The question was " +
               a.question +
-              "and my answer was: " +
-              a.selectedOption
-          )}`,
+              " and my answer was: " +
+              a.selectedOption +
+              ". "
+          ).join("")}`,
         },
       ],
     });
+
     const aiResponseText: string =
       aiResponse.choices[0].message.content || "No response";
     setResponse(aiResponseText);
+
+    // Navigate to the results page AFTER getting the response
+    navigate("/results");
   }
 
-    return (
-      <div className="quiz-container">
-        <h2>Welcome to the Detailed Career Quiz</h2>
-        {questions.map((q, questionIndex) => (
-          <div key={questionIndex} className="question-block">
-            <p>
-              <strong>
-                {questionIndex + 1}. {q.question}
-              </strong>
-            </p>
-            {q.options.map((option, optionIndex) => {
-              const isSelected = answers[questionIndex] === optionIndex;
-              return (
-                <button
-                  key={optionIndex}
-                  onClick={() => handleOptionClick(questionIndex, optionIndex)}
-                  className={`option-button ${isSelected ? "selected" : ""}`}
-                >
-                  {String.fromCharCode(97 + optionIndex)} {option}
-                </button>
-              );
-            })}
-          </div>
-        ))}
+  return (
+    <div className="quiz-container">
+      <h2>Welcome to the Detailed Career Quiz</h2>
 
-        <button
-          className="submit-button"
-          onClick={() => {
-            const answerTexts = getAnswerTexts();
-            // console.log("Collected Answers:", answerTexts); // For debugging
-            setResults(answerTexts);
-            displayResponse();
-          }}
-        >
-          Generate Career Report
-        </button>
+      {questions.map((q, questionIndex) => (
+        <div key={questionIndex} className="question-block">
+          <p>
+            <strong>
+              {questionIndex + 1}. {q.question}
+            </strong>
+          </p>
+          {q.options.map((option, optionIndex) => {
+            const isSelected = answers[questionIndex] === optionIndex;
+            return (
+              <button
+                key={optionIndex}
+                onClick={() => handleOptionClick(questionIndex, optionIndex)}
+                className={`option-button ${isSelected ? "selected" : ""}`}
+              >
+                {String.fromCharCode(97 + optionIndex)} {option}
+              </button>
+            );
+          })}
+        </div>
+      ))}
 
-        {results.length > 0 && (
-          <div className="results">
-            <h3>Your Answers:</h3>
-            <ul>
-              {results.map((item, i) => (
-                <li key={i}>
-                  <strong>{item.question}</strong>
-                  <br />
-                  Answer: {item.selectedOption}
-                </li>
-              ))}
-            </ul>
-            {/* <p>{response}</p> */}
-          </div>
-        )}
-      </div>
-    );
-  }
+      <button
+        className="submit-button"
+        onClick={displayResponse}
+      >
+        Generate Career Report
+      </button>
+    </div>
+  );
+}

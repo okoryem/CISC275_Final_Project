@@ -1,0 +1,41 @@
+.results-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #ece9e6, #ffffff);
+  }
+  
+  .results-card {
+    background: white;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .results-title {
+    font-size: 2.2rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .results-content {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  .results-line {
+    margin-bottom: 10px;
+  }
+  
+  .loading-text {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #888;
+  }
+  

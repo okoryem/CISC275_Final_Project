@@ -103,7 +103,6 @@ export function BasicQuiz( {apiKey, setResponse}: { apiKey: string; setResponse:
     Array(questions.length).fill(null)
   );
 
-  const [results, setResults] = useState<{ question: string; selectedOption: string }[]>([]);
 
   const handleSelect = (qIndex: number, oIndex: number) => {
     const updated = [...selectedAnswers];

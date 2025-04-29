@@ -1,0 +1,21 @@
+.progress-bar-container {
+    margin-top: 48px;
+    margin-left: 0px;
+    position: fixed;
+      top: 0;
+      left: 0;
+  }
+  .progress-container {
+    width: 100vw;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 2px; /* pill shape */
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 0%;
+    background-color: #779c43;
+    border-radius: 2px; /* round only the left side initially */
+    transition: width 0.3s ease;
+  }

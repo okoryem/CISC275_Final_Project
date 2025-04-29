@@ -121,7 +121,6 @@ export function OpenAIApiTest({ apiKey }: { apiKey: string }): React.JSX.Element
   return (
     <div>
 
-  <ProgressBar></ProgressBar>
       <h4>What's your favorite subject in school</h4>
       <FormGroup controlId="subjectSelect">
         <FormLabel>Choose a subject:</FormLabel>

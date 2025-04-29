@@ -1,4 +1,3 @@
-import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./NavigationBar.css"; 
@@ -17,7 +16,6 @@ export function NavigationBar() {
             <Nav.Link as={NavLink} to="/basic">Basic Quiz</Nav.Link>
             <Nav.Link as={NavLink} to="/detailed">Detailed Quiz</Nav.Link>
             <Nav.Link as={NavLink} to="/results">Results</Nav.Link>
-            <Nav.Link as={NavLink} to="/apiTest">OpenAI API Test</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

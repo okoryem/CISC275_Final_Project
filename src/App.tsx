@@ -1,45 +1,38 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
-import { NavigationBar } from "./components/NavigationBar";
-// was advised by chatgpt to install router to connect to othere pages
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import {Home} from './pages/Home'
-import { DetailedQuiz } from './pages/DetailedQuiz'; 
-import { BasicQuiz } from './pages/BasicQuiz';      
+import { NavigationBar } from "./components/NavigationBar";
+import { Home } from './pages/Home';
+import { BasicQuiz } from './pages/BasicQuiz';
+import { DetailedQuiz } from './pages/DetailedQuiz';
 import { Results } from './pages/Results';
 
-//local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
-let keyData = "";
 const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+let keyData = "";
+const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 
 function App() {
-  const [key, setKey] = useState<string>(keyData); //for api key input
+  const [key, setKey] = useState<string>(keyData);
+  const [response, setResponse] = useState<string>("OpenAI API Response will appear here");
+  const [isBlurred, setIsBlurred] = useState(true);
 
-  const [response, setResponse] = useState<string>("OpenAI API Response will appear here"); //for the response from the api
-
-  const [isBlurred, setIsBlurred] = useState(true); //Used to turn the blur on/off
   const handleReveal = () => {
     setIsBlurred(false);
   };
 
-  //sets the local storage item to the api key the user inputed
-  function handleSubmit() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // prevent page reload
     localStorage.setItem(saveKeyData, JSON.stringify(key));
-    //window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
-  }
+  };
 
-  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
-  function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
+  const changeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKey(event.target.value);
-  }
-  
-  
-  //ai (specifically ChatGpt) helped with the understanding of using the router
+  };
+
   return (
     <Router>
       <div className="App">
@@ -48,10 +41,9 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home handleReveal={handleReveal} isBlurred={isBlurred} />} />
-            <Route path="/basic" element={<BasicQuiz />} />
-            <Route path="/detailed" element={<DetailedQuiz apiKey={key} setResponse={setResponse}/>} />
-            <Route path="/results" element={<Results response={response}/>} />
-            {/* <Route path="/apiTest" element={<OpenAIApiTest apiKey={key} />} /> */}
+            <Route path="/basic" element={<BasicQuiz apiKey={key} setResponse={setResponse} />} />
+            <Route path="/detailed" element={<DetailedQuiz apiKey={key} setResponse={setResponse} />} />
+            <Route path="/results" element={<Results response={response} />} />
           </Routes>
         </div>
 
@@ -62,9 +54,10 @@ function App() {
             <Form.Control
               type="password"
               placeholder="Insert API Key Here"
+              value={key}
               onChange={changeKey}
             />
-            <Button className="submit-button" onClick={handleSubmit}>
+            <Button className="submit-button" type="submit">
               Submit
             </Button>
           </Form>
@@ -74,4 +67,5 @@ function App() {
     </Router>
   );
 }
+
 export default App;

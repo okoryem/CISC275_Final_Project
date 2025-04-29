@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, FormCheck, FormGroup, FormLabel } from "react-bootstrap";
 import OpenAI from "openai";
-import { ProgressBar } from "../components/ProgressBar";
+//import { ProgressBar } from "../components/ProgressBar";
 
 const SUBJECTS = [
   "Math",

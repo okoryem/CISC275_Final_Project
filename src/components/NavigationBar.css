@@ -5,9 +5,9 @@
   
   /* Space out brand */
   .nav-brand {
+    margin-right: 20%;
     font-size: 22px;
     font-weight: bold;
-    padding-left: 10px; /* Add spacing to push away from the edge */
   }
   
   .nav-links .nav-link {
@@ -15,6 +15,7 @@
     font-size: 18px;
     font-weight: bold;
     padding: 10px 20px; /* More padding between links */
+    
   }
   
   .nav-links .nav-link:hover {

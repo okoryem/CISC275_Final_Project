@@ -46,11 +46,28 @@ export function BasicQuiz({
           {
             role: "system",
             content:
-              "You are a career specialist. You analyze people's responses and help them choose a career. Can you give a nicely formatted response. Have multiple career options, and primary career you think they should take. Also say why you choose that career. You can use bullets and lists to make it easier to read.",
+              `You are a career specialist. You analyze people's responses and help them choose a career. 
+              Have 4 career options, specifically have one primary career you think they should folllow and 3 other possible careers. 
+              Also say why you choose that career and what percentage you think this career matches their quiz responses. 
+              Have an introduction that mentions that this is a basic quiz.
+              When giving a response format it like this:
+              Introduction: <introduction>
+              PrimaryCareer: <career name>
+              PrimaryCareerReason: <reason>
+              PrimaryCareerPercentage: <percentage>
+              OtherCareer1: <career1 name>
+              OtherCareer1Reason: <reason>
+              OtherCareer1Percentage: <percentage>
+              OtherCareer2: <career2 name>
+              OtherCareer2Reason: <reason>
+              OtherCareer2Percentage: <percentage>
+              OtherCareer3: <career3 name>
+              OtherCareer3Reason: <reason>
+              OtherCareer3Percentage: <percentage>`,
           },
           {
             role: "user",
-            content: `I just took a Basic career quiz (mention in your response that these are the results from a Basic career quiz). These are the questions and their respective answers: ${basicQuestions
+            content: `I just took the Basic career quiz. These are the questions and their respective answers: ${basicQuestions
               .map(
                 (q, i) =>
                   `The question was "${q.question}" and my answer was: ${answersGrid[i]}.`

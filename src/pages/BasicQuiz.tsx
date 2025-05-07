@@ -13,14 +13,16 @@ export function BasicQuiz({
   apiKey: string;
   setResponse: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  
   //THIS ARRAY BELOW IS WHERE THE ANSWERS ARE STORED FOR EACH QUESTION
-  const [answersGrid, setAnswersGrid] = useState<(string[])>([
-    "", "", "", "", "", "", "", "", "", ""
-  ]);
+  const [answersGrid, setAnswersGrid] = useState<string[]>(
+    ["", "", "", "", "", "", "", "", "", ""]
+  );
 
   //Bar fills up at the top of screen based on integer value e.g (0-100)
-  const [barPercentage, setBarPercentage] = useState<number>(0); 
+  const [barPercentage, setBarPercentage] = useState<number>(0);
+
+  // Tracks whether the app is waiting for OpenAI's response
+  const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -31,42 +33,43 @@ export function BasicQuiz({
 
   async function displayResponse() {
     if (!apiKey) {
-      setResponse(
-        "Please enter your OpenAI API key at the bottom of the page."
-      );
+      setResponse("Please enter your OpenAI API key at the bottom of the page.");
       return;
     }
 
-    const aiResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a career specialist. You analyze people's responses and help them choose a career. Can you give a nicely formatted response. Have multiple career options, and primary career you think they should take. Also say why you choose that career. You can use bullets and lists to make it easier to read.",
-        },
-        {
-          role: "user",
-          content: `I just took a Basic career quiz (mention in your response that these are the results from a Basic career quiz). These are the questions and their respective answers: ${basicQuestions
-            .map(
-              (a, i) =>
-                "The question was " +
-                a.question +
-                " and my answer was: " +
-                answersGrid[i] +
-                ". "
-            )
-            .join("")}`,
-        },
-      ],
-    });
+    setLoading(true); // start loading
 
-    const aiResponseText: string =
-      aiResponse.choices[0].message.content || "No response";
-    setResponse(aiResponseText);
+    try {
+      const aiResponse = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a career specialist. You analyze people's responses and help them choose a career. Can you give a nicely formatted response. Have multiple career options, and primary career you think they should take. Also say why you choose that career. You can use bullets and lists to make it easier to read.",
+          },
+          {
+            role: "user",
+            content: `I just took a Basic career quiz (mention in your response that these are the results from a Basic career quiz). These are the questions and their respective answers: ${basicQuestions
+              .map(
+                (q, i) =>
+                  `The question was "${q.question}" and my answer was: ${answersGrid[i]}.`
+              )
+              .join(" ")}`,
+          },
+        ],
+      });
 
-    // Navigate to the results page AFTER getting the response
-    navigate("/results");
+      const aiResponseText =
+        aiResponse.choices[0].message.content || "No response";
+      setResponse(aiResponseText);
+      navigate("/results");
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+      setResponse("An error occurred while generating your report.");
+    } finally {
+      setLoading(false); // stop loading regardless of success/failure
+    }
   }
 
   return (
@@ -74,7 +77,7 @@ export function BasicQuiz({
       <h2>Welcome to the Basic Career Quiz</h2>
       <div className="progress-bar-container">
         Completion %
-        <ProgressBar value={barPercentage}></ProgressBar>
+        <ProgressBar value={barPercentage} />
       </div>
 
       <div className="question-block-group">
@@ -93,11 +96,8 @@ export function BasicQuiz({
         ))}
       </div>
 
-      <button
-        className="submit-button"
-        onClick={displayResponse}
-      >
-        Generate Career Report
+      <button className="submit-button" onClick={displayResponse} disabled={loading}>
+        {loading ? "Generating your career report..." : "Generate Career Report"}
       </button>
     </div>
   );

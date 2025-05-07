@@ -1,24 +1,35 @@
 .navbar-custom {
-    background-color: rgb(35, 68, 101);
-    padding: 15px 20px; /* More padding for better spacing */
-  }
-  
-  /* Space out brand */
-  .nav-brand {
-    margin-right: 20%;
-    font-size: 22px;
-    font-weight: bold;
-  }
-  
-  .nav-links .nav-link {
-    color: white !important;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 20px; /* More padding between links */
-    
-  }
-  
-  .nav-links .nav-link:hover {
-    color: #d1e3ff !important;
-  }
-  
+  background-color: rgb(35, 68, 101);
+  padding: 1rem 5%; /* Use percentage for horizontal padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  font-size: 1.5rem; /* Scales better across screen sizes */
+  font-weight: bold;
+  flex: 1 1 40%; /* Take 40% of available space */
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 60%; /* Take 60% of available space */
+  flex-wrap: wrap;
+}
+
+
+.nav-links .nav-link {
+  color: white !important;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem; /* Use rems for consistency */
+  text-decoration: none;
+}
+
+.nav-links .nav-link:hover {
+  color: #d1e3ff !important;
+}

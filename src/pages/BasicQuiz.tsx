@@ -48,7 +48,8 @@ export function BasicQuiz({
             content:
               `You are a career specialist. You analyze people's responses and help them choose a career. 
               Have 4 career options, specifically have one primary career you think they should folllow and 3 other possible careers. 
-              Also say why you choose that career and what percentage you think this career matches their quiz responses. 
+              Also say why you choose that career and what percentage you think this career matches their quiz responses. Make sure that you
+              give a detailed explanation of the reasoning behind each career choice and a detailed explanation of the career. 
               Have an introduction that mentions that this is a basic quiz.
               When giving a response format it like this:
               Introduction: <introduction>

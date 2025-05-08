@@ -38,4 +38,33 @@
     font-size: 1.3rem;
     color: #888;
   }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .reason {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
+    text-align: justify
+  }
+
+  .percentage {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
+    text-align: left;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: justify;
+  }
   

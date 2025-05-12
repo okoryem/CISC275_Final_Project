@@ -13,16 +13,19 @@ export function BasicQuiz({
   apiKey: string;
   setResponse: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  //THIS ARRAY BELOW IS WHERE THE ANSWERS ARE STORED FOR EACH QUESTION
+  // THIS ARRAY BELOW IS WHERE THE ANSWERS ARE STORED FOR EACH QUESTION
   const [answersGrid, setAnswersGrid] = useState<string[]>(
     ["", "", "", "", "", "", "", "", "", ""]
   );
 
-  //Bar fills up at the top of screen based on integer value e.g (0-100)
+  // Bar fills up at the top of screen based on integer value e.g (0-100)
   const [barPercentage, setBarPercentage] = useState<number>(0);
 
   // Tracks whether the app is waiting for OpenAI's response
   const [loading, setLoading] = useState<boolean>(false);
+
+  // Shows validation error if not all questions are answered
+  const [validationMessage, setValidationMessage] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -37,6 +40,13 @@ export function BasicQuiz({
       return;
     }
 
+    // Check if all questions have been answered
+    if (answersGrid.some(answer => answer.trim() === "")) {
+      setValidationMessage("Please answer all questions before generating your career report.");
+      return;
+    }
+
+    setValidationMessage(""); // Clear previous message
     setLoading(true); // start loading
 
     try {
@@ -45,9 +55,8 @@ export function BasicQuiz({
         messages: [
           {
             role: "system",
-            content:
-              `You are a career specialist. You analyze people's responses and help them choose a career. 
-              Have 4 career options, specifically have one primary career you think they should folllow and 3 other possible careers. 
+            content: `You are a career specialist. You analyze people's responses and help them choose a career. 
+              Have 4 career options, specifically have one primary career you think they should follow and 3 other possible careers. 
               Also say why you choose that career and what percentage you think this career matches their quiz responses. Make sure that you
               give a detailed explanation of the reasoning behind each career choice and a detailed explanation of the career. 
               Have an introduction that mentions that this is a basic quiz.
@@ -113,10 +122,14 @@ export function BasicQuiz({
           />
         ))}
       </div>
-
+      {validationMessage && (
+        <div className="error-message">{validationMessage}</div>
+      )}
       <button className="submit-button" onClick={displayResponse} disabled={loading}>
         {loading ? "Generating your career report..." : "Generate Career Report"}
       </button>
+
+      
     </div>
   );
 }

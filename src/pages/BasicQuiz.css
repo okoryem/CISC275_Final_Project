@@ -27,4 +27,9 @@
     color: white;
     border-color: #007bff;
   }
-  
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
